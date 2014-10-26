@@ -913,7 +913,7 @@ else ifeq ($(TARGET_DEVICE), n1)
     BRIGHTNESS_SYS_FILE := "/sys/class/leds/lcd-backlight/brightness"
 
 #Oppo Find7,Find7a,X9007,X9006 (find7)
-else ifeq ($(TARGET_DEVICE), find7)
+else ifneq ($(filter $(TARGET_DEVICE),find7 find7u),)
     TARGET_COMMON_NAME := Oppo Find7
     TARGET_SCREEN_HEIGHT := 1920
     TARGET_SCREEN_WIDTH := 1080
