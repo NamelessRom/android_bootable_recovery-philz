@@ -918,7 +918,12 @@ int format_volume(const char* volume) {
     }
 
     if (strcmp(v->fs_type, "ext4") == 0) {
-        int result = make_ext4fs(v->blk_device, v->length, volume, sehandle);
+        s64 len = 0;
+
+        if (strcmp(volume, "/data") == 0) {
+            len = -16384;  /* Reserve 16 Kbytes for the crypto footer */
+        }
+        int result = make_ext4fs(v->blk_device, len, volume, sehandle);
         if (result != 0) {
             LOGE("format_volume: make_ext4fs failed on %s\n", v->blk_device);
             return -1;
