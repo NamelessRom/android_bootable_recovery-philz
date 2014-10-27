@@ -905,16 +905,23 @@ else ifeq ($(TARGET_DEVICE), find5)
     TARGET_SCREEN_WIDTH := 1080
     BRIGHTNESS_SYS_FILE := "/sys/class/leds/lcd-backlight/brightness"
 
-#Oppo N1 (n1)
-else ifeq ($(TARGET_DEVICE), n1)
-    TARGET_COMMON_NAME := Oppo N1
+#Oppo Find7a (find7a, find7au)
+else ifneq ($(filter $(TARGET_DEVICE),find7a find7au),)
+    TARGET_COMMON_NAME := Oppo Find7
     TARGET_SCREEN_HEIGHT := 1920
     TARGET_SCREEN_WIDTH := 1080
     BRIGHTNESS_SYS_FILE := "/sys/class/leds/lcd-backlight/brightness"
 
-#Oppo Find7,Find7a,X9007,X9006 (find7)
+#Oppo Find7s (find7, find7u)
 else ifneq ($(filter $(TARGET_DEVICE),find7 find7u),)
     TARGET_COMMON_NAME := Oppo Find7
+    TARGET_SCREEN_HEIGHT := 2560
+    TARGET_SCREEN_WIDTH := 1440
+    BRIGHTNESS_SYS_FILE := "/sys/class/leds/lcd-backlight/brightness"
+
+#Oppo N1 (n1)
+else ifeq ($(TARGET_DEVICE), n1)
+    TARGET_COMMON_NAME := Oppo N1
     TARGET_SCREEN_HEIGHT := 1920
     TARGET_SCREEN_WIDTH := 1080
     BRIGHTNESS_SYS_FILE := "/sys/class/leds/lcd-backlight/brightness"
