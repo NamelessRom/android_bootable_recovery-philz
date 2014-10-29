@@ -918,10 +918,11 @@ int format_volume(const char* volume) {
     }
 
     if (strcmp(v->fs_type, "ext4") == 0) {
-
+#ifdef TARGET_RECOVERY_NEEDS_CRYPTO_RESERVED
         if (strcmp(volume, "/data") == 0) {
             v->length = -16384;  /* Reserve 16 Kbytes for the crypto footer */
         }
+#endif
         int result = make_ext4fs(v->blk_device, v->length, volume, sehandle);
         if (result != 0) {
             LOGE("format_volume: make_ext4fs failed on %s\n", v->blk_device);
